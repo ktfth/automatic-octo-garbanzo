@@ -14,9 +14,32 @@
     <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
     <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/core-js/2.1.4/core.min.js"></script>
+    <script src="//unpkg.com/@feathersjs/client@^3.0.0/dist/feathers.js"></script>
+    <script src="//unpkg.com/socket.io-client@1.7.3/dist/socket.io.js"></script>
 
     <!-- Load our React component. -->
     <script src="fetch_url.js"></script>
+    <script>
+      // Socket.io is exposed as the `io` global.
+      var socket = io('http://localhost:3030');
+      // @feathersjs/client is exposed as the `feathers` global.
+      var app = feathers();
+
+      // Set up Socket.io client with the socket
+      app.configure(feathers.socketio(socket));
+
+      // Receive real-time events through Socket.io
+      app.service('v1/urls')
+        .on('created', message => console.log('New message created', message));
+
+      // Call the `messages` service
+      app.service('v1/urls').create({
+        text: 'A message from a REST client'
+      });
+
+      // feathers.errors is an object with all of the custom error types.
+    </script>
 
   </body>
 </html>

@@ -46,7 +46,10 @@
     "@feathersjs/transport-commons": "^4.5.7",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
+    "feathers-mongoose": "^8.3.1",
     "helmet": "^3.23.3",
+    "mongodb-core": "^3.2.7",
+    "mongoose": "^5.9.26",
     "serve-favicon": "^2.5.0",
     "winston": "^3.3.3"
   },
@@ -55,6 +58,7 @@
     "@types/cors": "^2.8.6",
     "@types/helmet": "0.0.47",
     "@types/jest": "^26.0.7",
+    "@types/mongoose": "^5.7.34",
     "@types/serve-favicon": "^2.5.0",
     "axios": "^0.19.2",
     "jest": "^26.2.1",
