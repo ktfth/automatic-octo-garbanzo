@@ -14,7 +14,7 @@ app.service('v1/urls')
 
 const e = React.createElement;
 
-class URLInput extends React.Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
