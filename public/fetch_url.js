@@ -62,4 +62,4 @@ class App extends React.Component {
 }
 
 const fetchDataUrlDomContainer = document.querySelector('#fetch_data_url');
-ReactDOM.render(e(URLInput), fetchDataUrlDomContainer);
+ReactDOM.render(e(App), fetchDataUrlDomContainer);
