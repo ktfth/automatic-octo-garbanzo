@@ -6,11 +6,18 @@ class URLInput extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
     this.state = {url: ''};
   }
 
   handleChange(e) {
     this.setState({url: e.target.value});
+  }
+
+  handleKeyDown(e) {
+    if (e.keyCode === 13) {
+      console.log('Trigger action: ' + this.state.url);
+    }
   }
 
   render() {
@@ -19,6 +26,7 @@ class URLInput extends React.Component {
       placeholder: 'URL',
       value: this.state.url,
       onChange: this.handleChange,
+      onKeyDown: this.handleKeyDown,
     });
   }
 }
