@@ -9,7 +9,8 @@ export default function (app: Application) {
   const mongooseClient = app.get('mongooseClient');
   const { Schema } = mongooseClient;
   const schema = new Schema({
-    url: { type: String, required: true }
+    url: { type: String, required: true },
+    imgs: { type: Array },
   }, {
     timestamps: true
   });

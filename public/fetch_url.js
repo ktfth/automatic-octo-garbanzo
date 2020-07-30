@@ -19,7 +19,7 @@ class URLInput extends React.Component {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
-    this.state = { url: '' };
+    this.state = { url: '', imgs: [] };
   }
 
   handleChange(e) {
@@ -29,24 +29,37 @@ class URLInput extends React.Component {
   handleKeyDown(e) {
     if (e.keyCode === 13) {
       console.log('Trigger action: ' + this.state.url);
-      app.service('v1/urls').create({
-        url: this.state.url
-      }).then(res => {
-        console.log('response: ' + JSON.stringify(res))
+      app.service('v1/urls').find({ query: { url: this.state.url } }).then(res => {
+        if (res.total === 0) {
+          app.service('v1/urls').create({
+            url: this.state.url
+          }).then(res => {
+            this.setState({ url: this.state.url, imgs: res.imgs });
+          });
+        } else {
+          this.setState({ url: this.state.url, imgs: res.data[0].imgs });
+        }
       });
     }
   }
 
   render() {
     const url = this.state.url;
-    return e('input', {
+    let urlInput = e('input', {
       placeholder: 'URL',
       value: this.state.url,
       onChange: this.handleChange,
       onKeyDown: this.handleKeyDown,
     });
+    let imgs = [];
+    for (let img of this.state.imgs) {
+      imgs.push(e('li', null, e('img', { src: img })));
+    }
+    let ul = e('ul', null, imgs);
+
+    return e('div', null, urlInput, ul);
   }
 }
 
-const domContainer = document.querySelector('#fetch_data_url');
-ReactDOM.render(e(URLInput), domContainer);
+const fetchDataUrlDomContainer = document.querySelector('#fetch_data_url');
+ReactDOM.render(e(URLInput), fetchDataUrlDomContainer);
