@@ -30,7 +30,9 @@ class URLInput extends React.Component {
     if (e.keyCode === 13) {
       console.log('Trigger action: ' + this.state.url);
       app.service('v1/urls').create({
-        text: this.state.url
+        url: this.state.url
+      }).then(res => {
+        console.log('response: ' + JSON.stringify(res))
       });
     }
   }

@@ -1,11 +1,12 @@
 
+import fetch from '../../../hooks/fetch';
 export default {
   before: {
     all: [],
     find: [],
     get: [],
-    create: [],
-    update: [],
+    create: [fetch()],
+    update: [fetch()],
     patch: [],
     remove: []
   },
