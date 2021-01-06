@@ -62,7 +62,7 @@
     "@types/jest": "^26.0.7",
     "@types/mongoose": "^5.7.34",
     "@types/serve-favicon": "^2.5.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "jest": "^26.2.1",
     "nodemon": "^2.0.4",
     "shx": "^0.3.2",
